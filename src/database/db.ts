@@ -3,12 +3,12 @@ import "dotenv/config"
 import { DataSource } from "typeorm"
 import { Roles1708977443781 } from "./migrations/1708977443781-roles"
 import { User1708978297760 } from "./migrations/1708978297760-user"
-import { Services1708978774615 } from "./migrations/1708978774615-services"
-import { Appointments1708978652020 } from "./migrations/1709022138191-appointments"
 import { Role } from "../models/Role"
 import { User } from "../models/User"
 import { Service } from "../models/Service"
 import { Appointment } from "../models/Appointment"
+import { Services1709141616195 } from "./migrations/1709141616195-services"
+import { Appointments1709141726203 } from "./migrations/1709141726203-appointments"
 
 export const AppDataSource = new DataSource({
 type: "mysql",
@@ -21,8 +21,8 @@ entities: [Role, User, Service, Appointment],
 migrations: [
     Roles1708977443781,
     User1708978297760,
-    Services1708978774615,
-    Appointments1708978652020
+    Services1709141616195,
+    Appointments1709141726203
 ],
 synchronize: false,
 logging: false,
