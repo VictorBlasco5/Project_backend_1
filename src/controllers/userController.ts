@@ -28,3 +28,36 @@ export const getUsers = async (req:Request, res:Response) => {
         })
     }
 }
+
+export const getUserById = async (req:Request, res:Response) => {
+    try{
+        const userId = req.params.id;
+        
+        //validacion de datos
+        const user = await User.findOneBy(
+            {
+                id: parseInt(userId)
+            }
+        )
+
+        if(!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "users retrieved",
+            data: user
+        })
+        
+    }catch (error){
+        res.status(500).json({
+            success: false,
+            message: "User cant be retrieved",
+            error: error
+        })
+    }
+}

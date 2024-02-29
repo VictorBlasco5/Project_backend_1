@@ -1,7 +1,7 @@
 import express from "express";
 import { register } from "./controllers/authController";
 import { createServices, deleteServices, getServices, updateServices } from "./controllers/serviceController";
-import { getUsers } from "./controllers/userController";
+import { getUserById, getUsers } from "./controllers/userController";
 
 export const app = express();
 
@@ -31,3 +31,4 @@ app.delete('/api/services/:id', deleteServices)
 
 //user routes
 app.get('/api/users', getUsers)
+app.get('/api/users/profile/:id', getUserById)
