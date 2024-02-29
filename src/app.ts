@@ -1,5 +1,6 @@
 import express from "express";
 import { register } from "./controllers/authController";
+import { createServices, deleteServices, getServices, updateServices } from "./controllers/serviceController";
 
 export const app = express();
 
@@ -17,4 +18,11 @@ app.get('/healthy', (req, res) => {
 
 
 //auth routes
-app.post('/api/register', register)
+app.post('/api/auth/register', register)
+
+
+//service routes
+app.get('/api/services', getServices)
+app.post('/api/services', createServices)
+app.put('/api/services/:id', updateServices)
+app.delete('/api/services/:id', deleteServices)
