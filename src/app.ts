@@ -1,6 +1,7 @@
 import express from "express";
 import { register } from "./controllers/authController";
 import { createServices, deleteServices, getServices, updateServices } from "./controllers/serviceController";
+import { getUsers } from "./controllers/userController";
 
 export const app = express();
 
@@ -26,3 +27,7 @@ app.get('/api/services', getServices)
 app.post('/api/services', createServices)
 app.put('/api/services/:id', updateServices)
 app.delete('/api/services/:id', deleteServices)
+
+
+//user routes
+app.get('/api/users', getUsers)
