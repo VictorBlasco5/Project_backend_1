@@ -16,8 +16,8 @@ export class User extends BaseEntity{
     @Column({name: 'email'})
     email!: string
 
-    @Column({name: 'password'})
-    password!: string
+    @Column({name: 'password_hash'})
+    password_hash!: string
 
     @ManyToOne(() => Role, (role) => role.users)
     @JoinColumn ({ name: "role_id" }) // campo personalizado en la bd

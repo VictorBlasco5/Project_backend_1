@@ -1,25 +1,23 @@
-import express, { Request, Response } from "express";
 import "dotenv/config";
+import { app } from "./app";
+import { AppDataSource } from "./database/db";
 
-const app = express();
 
 const PORT = process.env.PORT || 4001;
 
-app.get('/healthy', (req, res) => {
-    res.status(200).json(
-      {
-        success: true,
-        message: "Server is healthy"
-      }
-    );
-})
   
+const startServer = () => { // función para llamar a que me ponga en marcha mi servidor
+  AppDataSource.initialize()
+      .then(() => {
+          console.log('Database conected');
+          app.listen(PORT, () => { // el listen pone en marcha mi servidor
+              console.log(`Server is running on port: ${PORT}`);
+          })
+      })
+      .catch(error => {
+          console.log(error)
+      })
+}
 
-  
-app.get('/',(req:Request,res:Response)=>{
-    res.send('Hello world!')
-});
-
-app.listen(4000,()=>console.log('Servidor levantado en 4000'));
-
+startServer();
 
