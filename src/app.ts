@@ -2,6 +2,8 @@ import express from "express";
 import { login, register } from "./controllers/authController";
 import { createServices, deleteServices, getServices, updateServices } from "./controllers/serviceController";
 import { getUserById, getUsers, updateUserById } from "./controllers/userController";
+import { auth } from "./middlewares/auth";
+import { isSuperAdmin } from "./middlewares/isSuperAdmin";
 
 export const app = express();
 
@@ -31,6 +33,6 @@ app.delete('/api/services/:id', deleteServices)
 
 
 //user routes
-app.get('/api/users', getUsers)
+app.get('/api/users',auth, isSuperAdmin, getUsers)
 app.get('/api/users/profile/:id', getUserById)
 app.put('/api/users/profile/:id', updateUserById)
