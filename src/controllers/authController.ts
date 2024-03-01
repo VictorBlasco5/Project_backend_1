@@ -12,7 +12,7 @@ export const register = async (req: Request, res: Response) => {
         const passwordHash = req.body.password_hash;
 
         //validacion contraseña
-        if(passwordHash.length < 7 || passwordHash.length > 12) {
+        if (passwordHash.length < 7 || passwordHash.length > 12) {
             return res.status(400).json({
                 success: false,
                 message: "The password must be between 7 and 12 caracteres"
@@ -20,15 +20,13 @@ export const register = async (req: Request, res: Response) => {
         }
 
         //validacion email
-        const validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-        if (!validEmail.test(email) ){
-          return res.status(400).json(
-            {
-              success: false,
-              message: "Format email invalid"
-            }
-          )
-        } 
+        const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        if (!validEmail.test(email)) {
+            return res.status(400).json({
+                success: false,
+                message: "Format email invalid"
+            })
+        }
 
         const passwordEncrypted = bcrypt.hashSync(passwordHash, 8);
 
@@ -43,17 +41,83 @@ export const register = async (req: Request, res: Response) => {
             }
         }).save()
 
-        return res.status(201).json(
-            {
-                success: true,
-                message: "User registered successfully",
-            }
-        )
+        return res.status(201).json({
+            success: true,
+            message: "User registered successfully",
+            data: newUser
+        })
 
     } catch (error) {
         res.status(500).json({
             success: false,
             message: "User cant be register",
+            error: error
+        })
+    }
+}
+
+
+//Login
+export const login = async (req: Request, res: Response) => {
+    try {
+
+        const email = req.body.email;
+        const passwordHash = req.body.password_hash;
+
+        //validacion
+        if (!email || !passwordHash) {
+            return res.status(404).json({
+                success: false,
+                message: "Email and password are needed"
+            })
+        }
+
+        const user = await User.findOne(
+            {
+                where: {
+                    email: email
+                },
+                relations: {
+                    role: true
+                },
+                select: {
+                    id: true,
+                    email: true,
+                    password_hash: true,
+                    role: {
+                        id: true,
+                        name: true
+                    }
+                }
+            }
+        )
+
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "Email or password invalid"
+            })
+        }
+
+        const isValidPassword = bcrypt.compareSync(passwordHash, user.password_hash)
+
+        if(!isValidPassword) {
+            return  res.status(400).json({
+                success: false,
+                message: "Email or password invalid",
+            })
+        }
+
+        res.status(201).json({
+            succes: true,
+            message: "User logged",
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "User cant be logged",
             error: error
         })
     }

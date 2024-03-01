@@ -1,5 +1,5 @@
 import express from "express";
-import { register } from "./controllers/authController";
+import { login, register } from "./controllers/authController";
 import { createServices, deleteServices, getServices, updateServices } from "./controllers/serviceController";
 import { getUserById, getUsers, updateUserById } from "./controllers/userController";
 
@@ -20,6 +20,7 @@ app.get('/healthy', (req, res) => {
 
 //auth routes
 app.post('/api/auth/register', register)
+app.post('/api/auth/login', login)
 
 
 //service routes
