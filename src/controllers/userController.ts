@@ -3,7 +3,7 @@ import { User } from "../models/User";
 
 
 //VER TODOS LOS USUARIOS
-export const getUsers = async (req:Request, res:Response) => {
+export const getUsers = async (req: Request, res: Response) => {
     try {
         const users = await User.find(
             {
@@ -22,7 +22,7 @@ export const getUsers = async (req:Request, res:Response) => {
             data: users
         })
 
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "It is not possible to recover the users",
@@ -31,32 +31,34 @@ export const getUsers = async (req:Request, res:Response) => {
     }
 }
 
-// VER PERFIL USUARIO
-export const getUserById = async (req:Request, res:Response) => {
-    try{
-        const userId = req.params.id;
+
+//VER PERFIL USUARIO
+export const getUserProfile = async (req: Request, res: Response) => {
+    try {
         
-        //validacion de datos
-        const user = await User.findOneBy(
+        const userId = req.tokenData.userId;
+
+        const userProfile = await User.findOneBy(
             {
-                id: parseInt(userId)
+                id: userId
             }
         )
 
-        if(!user) {
-            return res.status(404).json({
+        if (!userProfile) {
+            return res.status(500).json({
                 success: false,
-                message: "User not found"
+                message: "User not found ",
+
             })
         }
 
         res.status(200).json({
             success: true,
-            message: "users retrieved",
-            data: user
+            message: "User retrieved",
+            data: userProfile
         })
 
-    }catch (error){
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "User cant be retrieved",
@@ -65,8 +67,9 @@ export const getUserById = async (req:Request, res:Response) => {
     }
 }
 
+
 //MODIFICAR DATOS PERFIL
-export const updateProfile = (req:Request, res:Response) => {
+export const updateProfile = async (req: Request, res: Response) => {
     try {
 
         //recuperar data
@@ -74,29 +77,29 @@ export const updateProfile = (req:Request, res:Response) => {
         const lastName = req.body.last_name;
         const email = req.body.email;
 
-        if(!firstName) {
-            return res.status(404).json ({
+        //validaciones
+        if (!firstName) {
+            return res.status(404).json({
                 success: false,
                 message: "First name is needed"
             })
         }
 
-        //validaciones
-        if(!lastName) {
-            return res.status(404).json ({
+        if (!lastName) {
+            return res.status(404).json({
                 success: false,
                 message: "Last name is needed"
             })
         }
 
-        if(!email) {
-            return res.status(404).json ({
+        if (!email) {
+            return res.status(404).json({
                 success: false,
                 message: "Email is needed"
             })
         }
 
-        const userUpdate = User.update(
+        const userUpdate = await User.update(
             {
                 id: req.tokenData.userId
             },
