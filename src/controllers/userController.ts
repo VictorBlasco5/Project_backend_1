@@ -65,31 +65,40 @@ export const getUserById = async (req:Request, res:Response) => {
     }
 }
 
-// MOFIFICAR DATOS PERFIL
-export const updateUserById = async (req:Request, res:Response) => {
+//MODIFICAR DATOS PERFIL
+export const updateProfile = (req:Request, res:Response) => {
     try {
 
-        const userId = req.params.id;
+        //recuperar data
         const firstName = req.body.first_name;
         const lastName = req.body.last_name;
         const email = req.body.email;
 
-        //validacion de datos
-        const user = await User.findOneBy ({
-            id: parseInt(userId)
-        })
-
-        if(!user) {
-            return res.status(404).json({
+        if(!firstName) {
+            return res.status(404).json ({
                 success: false,
-                message: "User not found"
+                message: "First name is needed"
             })
         }
 
-        //actualizar en BD
-        const userUpdate = await User.update(
+        //validaciones
+        if(!lastName) {
+            return res.status(404).json ({
+                success: false,
+                message: "Last name is needed"
+            })
+        }
+
+        if(!email) {
+            return res.status(404).json ({
+                success: false,
+                message: "Email is needed"
+            })
+        }
+
+        const userUpdate = User.update(
             {
-                id: parseInt(userId)
+                id: req.tokenData.userId
             },
             {
                 first_name: firstName,
@@ -99,12 +108,12 @@ export const updateUserById = async (req:Request, res:Response) => {
         )
 
         res.status(200).json({
-            succes: true,
+            success: true,
             message: "User update",
             date: userUpdate
         })
 
-    } catch (error){
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "User cant be update",

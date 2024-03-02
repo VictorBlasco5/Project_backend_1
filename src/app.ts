@@ -1,7 +1,7 @@
 import express from "express";
 import { login, register } from "./controllers/authController";
 import { createServices, deleteServices, getServices, updateServices } from "./controllers/serviceController";
-import { getUserById, getUsers, updateUserById } from "./controllers/userController";
+import { getUserById, getUsers, updateProfile } from "./controllers/userController";
 import { auth } from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
 
@@ -35,4 +35,4 @@ app.delete('/api/services/:id', deleteServices)
 //user routes
 app.get('/api/users',auth, isSuperAdmin, getUsers)
 app.get('/api/users/profile/:id', getUserById)
-app.put('/api/users/profile/:id', updateUserById)
+app.put('/api/users/profile',auth, updateProfile)
