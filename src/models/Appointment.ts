@@ -10,7 +10,7 @@ export class Appointment extends BaseEntity {
     @Column({ name: 'appointment_date' })
     appointment_date!: Date
 
-    @ManyToOne(() => Service, (service) => service.appointments)
+    @ManyToOne(() => Service, (service) => service.appointments, {eager: true}) //eagler:true hace que siempre me devuelva el servicio
     @JoinColumn ({ name: "service_id" })
     service!: Service;
 
