@@ -45,7 +45,7 @@ export const getUserProfile = async (req: Request, res: Response) => {
         )
 
         if (!userProfile) {
-            return res.status(500).json({
+            return res.status(400).json({
                 success: false,
                 message: "User not found ",
 

@@ -3,6 +3,7 @@ import { User } from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+//Crear usuario
 export const register = async (req: Request, res: Response) => {
     try {
         console.log(req.body);

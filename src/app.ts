@@ -4,6 +4,7 @@ import { createServices, deleteServices, getServices, updateServices } from "./c
 import { getUserProfile, getUsers, updateProfile } from "./controllers/userController";
 import { auth } from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
+import { createAppointments, getAppointments, getAppointmentsById, updateAppointments } from "./controllers/appointmentController";
 
 export const app = express();
 
@@ -36,3 +37,9 @@ app.delete('/api/services/:id', deleteServices)
 app.get('/api/users',auth, isSuperAdmin, getUsers)
 app.get('/api/users/profile',auth, getUserProfile)
 app.put('/api/users/profile',auth, updateProfile)
+
+//appointments routes
+app.post('/api/appointments',auth, createAppointments)
+app.put('/api/appointments', auth, updateAppointments)
+app.get('/api/appointments/:id', getAppointmentsById)
+app.get('/api/appointments', auth, getAppointments)
