@@ -36,7 +36,8 @@ export const createServices = async (req: Request, res: Response) => {
 
         const newService = await Service.create({
             service_name: serviceName,
-            description: description 
+            description: description,
+            
         }).save()
 
         res.status(201).json(

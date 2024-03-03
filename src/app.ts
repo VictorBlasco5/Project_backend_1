@@ -28,9 +28,9 @@ app.post('/api/auth/login', login)
 
 //service routes
 app.get('/api/services', getServices)
-app.post('/api/services', createServices)
-app.put('/api/services/:id', updateServices)
-app.delete('/api/services/:id', deleteServices)
+app.post('/api/services',auth, isSuperAdmin, createServices)
+app.put('/api/services/:id',auth, isSuperAdmin, updateServices)
+app.delete('/api/services/:id',auth, isSuperAdmin, deleteServices)
 
 
 //user routes
