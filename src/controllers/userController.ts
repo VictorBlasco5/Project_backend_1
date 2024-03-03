@@ -148,7 +148,7 @@ export const deleteUsers = async (req: Request, res: Response) => {
             {
                 succes: true,
                 message: "User delete",
-                
+                data: userDelete
             }
         )
 
@@ -160,3 +160,4 @@ export const deleteUsers = async (req: Request, res: Response) => {
         })
     }
 }
+
