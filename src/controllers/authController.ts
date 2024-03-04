@@ -30,6 +30,18 @@ export const register = async (req: Request, res: Response) => {
             })
         }
 
+        //validar si el email ya está registrado
+        const emailUser = await User.findOne({
+            where: { email: email }
+        }) 
+
+        if(emailUser) {
+            return res.status(400).json({
+                success: false,
+                message: "You are already registered"
+            })
+        }
+
         const passwordEncrypted = bcrypt.hashSync(passwordHash, 8);
 
         const newUser = await User.create({

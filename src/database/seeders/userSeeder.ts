@@ -1,7 +1,7 @@
 import { User } from "../../models/User";
 import { AppDataSource } from "../db";
 
-const roleSeedDatabase = async () => {
+export const userSeedDatabase = async () => {
     try {
       await AppDataSource.initialize();
       
@@ -107,4 +107,4 @@ const roleSeedDatabase = async () => {
     }
   }
    
-  roleSeedDatabase();
+  userSeedDatabase();

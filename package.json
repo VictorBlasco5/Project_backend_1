@@ -8,6 +8,7 @@
     "dev": "nodemon ./src/index.ts",
     "run-migrations": "typeorm-ts-node-commonjs migration:run -d ./src/database/db.ts",
     "revert-migrations": "typeorm-ts-node-commonjs migration:revert -d ./src/database/db.ts",
+    "seed": "ts-node ./src/database/seeders/seeder.ts",
     "build": "tsc",
     "start": "node ./dist/server.js"
   },
