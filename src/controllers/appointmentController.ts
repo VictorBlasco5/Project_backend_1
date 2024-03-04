@@ -44,6 +44,7 @@ export const updateAppointments = async (req: Request, res: Response) => {
 
         const appointmentDate = req.body.appointment_date;
         const appointmentId = req.body.appointment_id as number;
+        const serviceId = req.body.service_id;
 
         const appointment = await Appointment.findOneBy({
             id: appointmentId
@@ -70,7 +71,10 @@ export const updateAppointments = async (req: Request, res: Response) => {
                 id: appointmentId
             },
             {
-                appointment_date: appointmentDate
+                appointment_date: appointmentDate,
+                service: {
+                    id: serviceId
+                }
             }
         )
 
