@@ -4,12 +4,28 @@ import { Service } from "../models/Service";
 //VER TODOS LOS SERVICIOS
 export const getServices = async (req: Request, res: Response) => {
     try {
+        const limit = Number(req.query.limit) || 10; // elijo el limite que yo quiera y sino por defecto me dará máximo 10
+        const page = Number(req.query.page)|| 1; //elijo empezar por la pagina que yo quiera y sino por defecto me dará la 1
+        const skip = (page-1)*limit as number // determinar por qué página quiero empezar
+
+        if(limit > 100) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "You have exceeded the limit"
+                }
+            )
+        }
+
+
         const services = await Service.find({
             select: {
                 id: true,
                 service_name: true,
                 description: true
-            }
+            },
+            take: limit, //paginación para que me traiga máximo 10 servicios  al hacer la petición.
+            skip: skip 
         })
         res.status(200).json(
             {

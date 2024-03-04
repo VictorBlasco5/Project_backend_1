@@ -13,7 +13,7 @@ export const getUsers = async (req: Request, res: Response) => {
             return res.status(404).json(
                 {
                     success: false,
-                    message: "Has superado el limite"
+                    message: "you have exceeded the limit"
                 }
             )
         }
