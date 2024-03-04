@@ -5,6 +5,19 @@ import { User } from "../models/User";
 //VER TODOS LOS USUARIOS
 export const getUsers = async (req: Request, res: Response) => {
     try {
+        const limit = Number(req.query.limit) || 10; // elijo el limite que yo quiera y sino por defecto me dará 10
+        const page = Number(req.query.page)|| 1; //elijo empezar por la pagina que yo quiera y sino por defecto me dará la 1
+        const skip = (page-1)*limit as number // determinar por qué página quiero empezar
+
+        if(limit > 100) {
+            return res.status(404).json(
+                {
+                    success: false,
+                    message: "Has superado el limite"
+                }
+            )
+        }
+
         const users = await User.find(
             {
                 select: {
@@ -12,7 +25,9 @@ export const getUsers = async (req: Request, res: Response) => {
                     first_name: true,
                     last_name: true,
                     email: true,
-                }
+                },
+                take: limit, //paginación para que me traiga 10 usuarios al hacer la petición.
+                skip: skip 
             }
         )
 
