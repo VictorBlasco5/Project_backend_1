@@ -8,8 +8,9 @@ import { userSeedDatabase } from "./userSeeder";
 const launchSeeder = async () => {
     await roleSeedDatabase();
     await userSeedDatabase();
-    await appointmentSeedDatabase();
     await serviceSeedDatabase();
+    await appointmentSeedDatabase();
+
 
 }
 
