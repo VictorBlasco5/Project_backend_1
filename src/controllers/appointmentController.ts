@@ -4,7 +4,6 @@ import { Appointment } from "../models/Appointment";
 //Crear cita
 export const createAppointments = async (req: Request, res: Response) => {
     try {
-
         const appointmentDate = req.body.appointment_date;
         const userId = req.tokenData.userId;
         const serviceId = req.body.service_id;
@@ -28,7 +27,6 @@ export const createAppointments = async (req: Request, res: Response) => {
                 date: newAppointment
 
             })
-
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -41,7 +39,6 @@ export const createAppointments = async (req: Request, res: Response) => {
 //Actualizar cita
 export const updateAppointments = async (req: Request, res: Response) => {
     try {
-
         const appointmentDate = req.body.appointment_date;
         const appointmentId = req.body.appointment_id as number;
         const serviceId = req.body.service_id;
@@ -56,9 +53,6 @@ export const updateAppointments = async (req: Request, res: Response) => {
                 message: "The appointment has not exists"
             })
         }
-
-        console.log(appointmentDate)
-
         if (appointment.user.id != req.tokenData.userId) {
             return res.status(400).json({
                 success: false,
@@ -77,13 +71,11 @@ export const updateAppointments = async (req: Request, res: Response) => {
                 }
             }
         )
-
         return res.status(200).json({
             success: true,
             message: "Appointment update",
             date: appointmentUpdate
         })
-
 
     } catch (error) {
         res.status(500).json({
@@ -94,17 +86,14 @@ export const updateAppointments = async (req: Request, res: Response) => {
     }
 }
 
-
 //Recuperar cita
 export const getAppointmentsById = async (req: Request, res: Response) => {
     try {
         const appointmentId = req.params.id;
-        
 
         const appointment = await Appointment.findOneBy(
             {
                 id: parseInt(appointmentId),
-                
             }
         )
 
@@ -133,10 +122,9 @@ export const getAppointmentsById = async (req: Request, res: Response) => {
 //Ver mis citas
 export const getAppointments = async (req: Request, res: Response) => {
     try {
-
         const userId = req.tokenData.userId;
 
-        const appointments = await Appointment.find (
+        const appointments = await Appointment.find(
             {
                 where: {
                     user:
@@ -159,7 +147,7 @@ export const getAppointments = async (req: Request, res: Response) => {
             success: true,
             message: "Appointments retrieved successfully",
             data: appointments
-           
+
         })
 
     } catch (error) {

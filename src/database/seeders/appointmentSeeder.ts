@@ -1,7 +1,6 @@
 import { Appointment } from "../../models/Appointment";
 import { AppDataSource } from "../db";
 
-
 export const appointmentSeedDatabase = async () => {
     try {
         await AppDataSource.initialize()
@@ -145,7 +144,6 @@ export const appointmentSeedDatabase = async () => {
             service: { id: 5 }
         });
         await appointment20.save();
-
 
         console.log('---------------------------------------');
         console.log('Appointments successfully saved ');    

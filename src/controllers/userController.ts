@@ -1,15 +1,14 @@
 import { Request, Response } from "express";
 import { User } from "../models/User";
 
-
 //VER TODOS LOS USUARIOS
 export const getUsers = async (req: Request, res: Response) => {
     try {
         const limit = Number(req.query.limit) || 10; // elijo el limite que yo quiera y sino por defecto me dará 10
-        const page = Number(req.query.page)|| 1; //elijo empezar por la pagina que yo quiera y sino por defecto me dará la 1
-        const skip = (page-1)*limit as number // determinar por qué página quiero empezar
+        const page = Number(req.query.page) || 1; //elijo empezar por la pagina que yo quiera y sino por defecto me dará la 1
+        const skip = (page - 1) * limit as number // determinar por qué página quiero empezar
 
-        if(limit > 100) {
+        if (limit > 100) {
             return res.status(404).json(
                 {
                     success: false,
@@ -27,7 +26,7 @@ export const getUsers = async (req: Request, res: Response) => {
                     email: true,
                 },
                 take: limit, //paginación para que me traiga 10 usuarios al hacer la petición.
-                skip: skip 
+                skip: skip
             }
         )
 
@@ -46,11 +45,9 @@ export const getUsers = async (req: Request, res: Response) => {
     }
 }
 
-
 //VER PERFIL USUARIO
 export const getUserProfile = async (req: Request, res: Response) => {
     try {
-        
         const userId = req.tokenData.userId;
 
         const userProfile = await User.findOneBy(
@@ -63,7 +60,6 @@ export const getUserProfile = async (req: Request, res: Response) => {
             return res.status(400).json({
                 success: false,
                 message: "User not found ",
-
             })
         }
 
@@ -82,11 +78,9 @@ export const getUserProfile = async (req: Request, res: Response) => {
     }
 }
 
-
 //MODIFICAR DATOS PERFIL
 export const updateProfile = async (req: Request, res: Response) => {
     try {
-
         //recuperar data
         const firstName = req.body.first_name;
         const lastName = req.body.last_name;
@@ -143,14 +137,13 @@ export const updateProfile = async (req: Request, res: Response) => {
 //ELIMINAR USUARIO
 export const deleteUsers = async (req: Request, res: Response) => {
     try {
-
         const userId = req.params.id;
 
         const userToRemove: any = await User.findOneBy({
             id: parseInt(userId),
         })
 
-        if(!userToRemove) {
+        if (!userToRemove) {
             return res.status(404).json({
                 success: false,
                 message: "User dosent exist"

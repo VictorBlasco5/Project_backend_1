@@ -10,7 +10,6 @@ export const app = express();
 
 app.use(express.json());
 
-
 app.get('/healthy', (req, res) => {
     res.status(200).json(
       {
@@ -19,7 +18,6 @@ app.get('/healthy', (req, res) => {
       }
     );
 })
-
 
 //auth routes
 app.post('/api/auth/register', register)
@@ -31,7 +29,6 @@ app.get('/api/services', getServices)
 app.post('/api/services',auth, isSuperAdmin, createServices)
 app.put('/api/services/:id',auth, isSuperAdmin, updateServices)
 app.delete('/api/services/:id',auth, isSuperAdmin, deleteServices)
-
 
 //user routes
 app.get('/api/users',auth, isSuperAdmin, getUsers)

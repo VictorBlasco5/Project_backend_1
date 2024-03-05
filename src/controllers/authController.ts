@@ -6,8 +6,6 @@ import jwt from "jsonwebtoken";
 //Crear usuario
 export const register = async (req: Request, res: Response) => {
     try {
-        console.log(req.body);
-
         const firstName = req.body.first_name;
         const lastName = req.body.last_name;
         const email = req.body.email;
@@ -33,9 +31,9 @@ export const register = async (req: Request, res: Response) => {
         //validar si el email ya está registrado
         const emailUser = await User.findOne({
             where: { email: email }
-        }) 
+        })
 
-        if(emailUser) {
+        if (emailUser) {
             return res.status(400).json({
                 success: false,
                 message: "You are already registered"
@@ -53,7 +51,7 @@ export const register = async (req: Request, res: Response) => {
             role: {
                 id: 1
             }
-            
+
         }).save()
 
         return res.status(201).json({
@@ -70,7 +68,6 @@ export const register = async (req: Request, res: Response) => {
         })
     }
 }
-
 
 //Login
 export const login = async (req: Request, res: Response) => {
@@ -116,15 +113,15 @@ export const login = async (req: Request, res: Response) => {
 
         const isValidPassword = bcrypt.compareSync(passwordHash, user.password_hash)
 
-        if(!isValidPassword) {
-            return  res.status(400).json({
+        if (!isValidPassword) {
+            return res.status(400).json({
                 success: false,
                 message: "Email or password invalid",
             })
         }
 
-          //crear token
-          const token = jwt.sign(
+        //crear token
+        const token = jwt.sign(
             {
                 userId: user.id,
                 roleName: user.role.name
@@ -133,16 +130,14 @@ export const login = async (req: Request, res: Response) => {
             {
                 expiresIn: "2h"
             }
-
         )
 
         res.status(201).json({
             succes: true,
             message: "User logged",
             token: token
-            
-        })
 
+        })
 
     } catch (error) {
         res.status(500).json({

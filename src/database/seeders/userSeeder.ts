@@ -94,8 +94,6 @@ export const userSeedDatabase = async () => {
         role: {id: 1}
       });
       await user10.save();
-  
-
       
       console.log('---------------------------');
       console.log('Users successfully saved');    

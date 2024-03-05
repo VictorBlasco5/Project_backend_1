@@ -10,7 +10,6 @@ import { User } from "../models/User"
 import { Service } from "../models/Service"
 import { Appointment } from "../models/Appointment"
 
-
 export const AppDataSource = new DataSource({
 type: "mysql",
 host: "localhost",

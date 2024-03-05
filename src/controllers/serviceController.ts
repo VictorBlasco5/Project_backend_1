@@ -5,10 +5,10 @@ import { Service } from "../models/Service";
 export const getServices = async (req: Request, res: Response) => {
     try {
         const limit = Number(req.query.limit) || 10; // elijo el limite que yo quiera y sino por defecto me dará máximo 10
-        const page = Number(req.query.page)|| 1; //elijo empezar por la pagina que yo quiera y sino por defecto me dará la 1
-        const skip = (page-1)*limit as number // determinar por qué página quiero empezar
+        const page = Number(req.query.page) || 1; //elijo empezar por la pagina que yo quiera y sino por defecto me dará la 1
+        const skip = (page - 1) * limit as number // determinar por qué página quiero empezar
 
-        if(limit > 100) {
+        if (limit > 100) {
             return res.status(404).json(
                 {
                     success: false,
@@ -17,7 +17,6 @@ export const getServices = async (req: Request, res: Response) => {
             )
         }
 
-
         const services = await Service.find({
             select: {
                 id: true,
@@ -25,7 +24,7 @@ export const getServices = async (req: Request, res: Response) => {
                 description: true
             },
             take: limit, //paginación para que me traiga máximo 10 servicios  al hacer la petición.
-            skip: skip 
+            skip: skip
         })
         res.status(200).json(
             {
@@ -34,7 +33,7 @@ export const getServices = async (req: Request, res: Response) => {
                 data: services
             }
         )
-    }catch(error){
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "It is not possible to recover the services",
@@ -46,14 +45,14 @@ export const getServices = async (req: Request, res: Response) => {
 //CREAR SERVICIO
 export const createServices = async (req: Request, res: Response) => {
     try {
-        
+
         const serviceName = req.body.service_name;
         const description = req.body.description;
 
         const newService = await Service.create({
             service_name: serviceName,
             description: description,
-            
+
         }).save()
 
         res.status(201).json(
@@ -62,7 +61,7 @@ export const createServices = async (req: Request, res: Response) => {
                 message: "Service created",
                 date: newService
             })
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "Cant create service",
@@ -73,18 +72,18 @@ export const createServices = async (req: Request, res: Response) => {
 
 //MODIFICAR SERVICIO
 export const updateServices = async (req: Request, res: Response) => {
-    try{
+    try {
 
         const serviceId = req.params.id;
         const serviceName = req.body.service_name;
         const description = req.body.description;
-        
+
         //validacion de datos
         const service = await Service.findOneBy({
             id: parseInt(serviceId)
         })
 
-        if(!service) {
+        if (!service) {
             return res.status(404).json({
                 success: false,
                 message: "Service not found"
@@ -110,7 +109,7 @@ export const updateServices = async (req: Request, res: Response) => {
             }
         )
 
-    } catch (error){
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "Cant update service",
@@ -121,8 +120,7 @@ export const updateServices = async (req: Request, res: Response) => {
 
 //ELIMINAR SERVICIO
 export const deleteServices = async (req: Request, res: Response) => {
-    try{
-
+    try {
         const serviceId = req.params.id;
 
         //validacion de datos
@@ -130,14 +128,14 @@ export const deleteServices = async (req: Request, res: Response) => {
             id: parseInt(serviceId),
         })
 
-        if(!serviceToRemove) {
+        if (!serviceToRemove) {
             res.status(404).json({
                 success: false,
                 message: "Service cant be delete"
             })
         }
 
-         //actualizar en BD
+        //actualizar en BD
         const serviceDelete = await Service.remove(serviceToRemove)
 
         res.status(200).json(
@@ -148,7 +146,7 @@ export const deleteServices = async (req: Request, res: Response) => {
             }
         )
 
-    } catch (error){
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "Cant delete service",
