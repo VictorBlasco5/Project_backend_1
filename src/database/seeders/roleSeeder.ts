@@ -29,5 +29,3 @@ export const roleSeedDatabase = async () => {
     await AppDataSource.destroy()
   }
 }
-
-roleSeedDatabase();

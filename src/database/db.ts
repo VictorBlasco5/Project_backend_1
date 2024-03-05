@@ -17,7 +17,7 @@ host: "localhost",
 port: 3307,
 username: "root",
 password: "1234",
-database: "Proyect-backend-1",
+database: "victor",
 entities: [
     Role,
     User,
