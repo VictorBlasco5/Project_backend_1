@@ -21,7 +21,7 @@ export const roleSeedDatabase = async () => {
     await roleSuperAdmin.save();
 
     console.log('---------------------------------------');
-    console.log('Los roles se han guardado correctamente');    
+    console.log('Roles successfully saved ');    
     console.log('---------------------------------------');    
   } catch (error) {
     console.log(error);

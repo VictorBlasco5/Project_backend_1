@@ -1,25 +1,26 @@
-# Tattoo Studio
+# Tattoo Studio :black_nib:
 Bienvenido a la documentación de la API de mi estudio de tatuajes. Es mi cuarto proyecto dearrollado en GeeksHubs Academy en el cual se ponen en práctica habilidades de desarrollo backend con Typescript y Express.
 
-## Tabla de contenido
+## Tabla de contenido :page_with_curl:
 
 - [Tecnologías.](#tecnologías)
 - [Diagrama.](#diagrama-bd)
 - [Instalación en local.](#instalación-en-local)
+- [Usuarios modelo](#usuarios-modelo)
 - [Endpoint.](#endpoints)
 - [Futuras funcionalidades.](#futuras-funcionalidades)
 - [Autor.](#autor)
 - [Agradecimientos.](#agradecimientos)
 
-### Tecnologías
+### Tecnologías :star2:
 
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /><img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" /><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" /><img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" /><img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" /><img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /> <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" /><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" /> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" /> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" /> <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
 
-### Diagrama BD
+### Diagrama BD :book:
 
-![Diagrama](./img/diagrama.jpg)
+![Diagrama](./src/img/diagrama.jpg)
 
-### Instalación en local
+### Instalación en local :gear:
 
 **1. Clona el repositorio.**
 ````
@@ -42,7 +43,7 @@ $ npm run run-migrations
 $ npm run seed
 ````
 
-### Usuarios modelo
+### Usuarios modelo 	:frowning_man:
 #### User
 ````
 Nombre: Carles
@@ -65,7 +66,7 @@ Email: laura@blasco.com
 Contraseña: 12345678
 ````
 
-### Endpoints
+### Endpoints :dart:
 ##### Autenticación
 - `POST /api/auth/register` - **Registrar nuevo usuario.**
 Pasamos los siguientes datos por el body. Ejemplo:
@@ -90,7 +91,7 @@ Pasamos los siguientes datos por el body. Ejemplo:
 
 - `GET /api/users` - **Ver todos los usuarios. (Solo el superadmin)**
 Pasamos el token de un usuario superadmin.
-![Token](./img/token.jpg)
+![Token](./src/img/token.jpg)
 
 - `GET /api/users/profile` - **Ver perfil de usuario.**
 Pasamos el token del propio usuario.
@@ -108,7 +109,7 @@ Pasamos el token del propio usuario y los datos que queramos modificar por el bo
 
 - `DELETE /api/users/{id}` - **Eliminar usuario. (Solo el superadmin)**
 Pasamos el token del superadmin y el id del usuario a eliminar por parámetro.
-![Parámetro](./img/parametro.jpg)
+![Parámetro](./src/img/parametro.jpg)
 
 ##### Citas
 - `POST /api/appointments` - **Crear cita.**
@@ -151,12 +152,12 @@ Pasamos el token del superadmin y los datos a modificar por el body.
 Pasamos el token del superadmin y el id del servicio a eliminar por parametro.
 
 
-### Futuras funcionalidades
+### Futuras funcionalidades 	:rocket:
 - Posibilidad de elegir entre distintos tatuadores.
 
-### Autor
+### Autor :curly_haired_man:
 - **Víctor Blasco** - Project Developer.
    - [GitHub](https://github.com/VictorBlasco5)
 
-### Agradecimientos
+### Agradecimientos 
 - Agradecimiento a GeeksHubs Academy por su implicación en mi aprendizaje.

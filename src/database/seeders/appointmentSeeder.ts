@@ -146,6 +146,10 @@ export const appointmentSeedDatabase = async () => {
         });
         await appointment20.save();
 
+
+        console.log('---------------------------------------');
+        console.log('Appointments successfully saved ');    
+        console.log('---------------------------------------');    
     } catch (error) {
         console.log(error);
     } finally {
