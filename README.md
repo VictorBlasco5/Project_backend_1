@@ -43,7 +43,7 @@ $ npm run run-migrations
 $ npm run seed
 ````
 
-### Usuarios modelo 	:frowning_man:
+### Usuarios modelo :pouting_face:
 #### User
 ````
 Nombre: Carles
