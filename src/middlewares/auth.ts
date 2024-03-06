@@ -4,8 +4,6 @@ import { TokenData } from "../types";
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
 
-    console.log("Soy el auth middleware");
-
     // split convierte el string en un array. Me coge el segundo array que es la posicion [1]
     try {
         const token = req.headers.authorization?.split(" ")[1];

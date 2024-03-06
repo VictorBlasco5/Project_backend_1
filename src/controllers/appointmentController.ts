@@ -50,13 +50,13 @@ export const updateAppointments = async (req: Request, res: Response) => {
         if (!appointment) {
             return res.status(404).json({
                 success: false,
-                message: "The appointment has not exists"
+                message: "The appointment has not exist"
             })
         }
         if (appointment.user.id != req.tokenData.userId) {
             return res.status(400).json({
                 success: false,
-                message: "The appointment has not exists" //"The user has not rights to modify the appointment"
+                message: "The appointment has not exist" //"The user has not rights to modify the appointment"
             })
         }
 
