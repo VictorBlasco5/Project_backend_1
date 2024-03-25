@@ -94,6 +94,7 @@ export const login = async (req: Request, res: Response) => {
                 },
                 select: {
                     id: true,
+                    first_name:true,
                     email: true,
                     password_hash: true,
                     role: {
@@ -124,7 +125,8 @@ export const login = async (req: Request, res: Response) => {
         const token = jwt.sign(
             {
                 userId: user.id,
-                roleName: user.role.name
+                roleName: user.role.name,
+                firstName: user.first_name
             },
             process.env.JWT_SECRET as string,
             {
@@ -133,7 +135,7 @@ export const login = async (req: Request, res: Response) => {
         )
 
         res.status(201).json({
-            succes: true,
+            success: true,
             message: "User logged",
             token: token
 

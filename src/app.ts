@@ -5,8 +5,11 @@ import { deleteUsers, getUserProfile, getUsers, updateProfile } from "./controll
 import { auth } from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
 import { createAppointments, getAppointments, getAppointmentsById, updateAppointments } from "./controllers/appointmentController";
+import cors from "cors";
 
 export const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

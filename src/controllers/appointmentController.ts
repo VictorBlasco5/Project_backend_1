@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Appointment } from "../models/Appointment";
+import { User } from "../models/User";
 
 //Crear cita
 export const createAppointments = async (req: Request, res: Response) => {
@@ -70,7 +71,7 @@ export const updateAppointments = async (req: Request, res: Response) => {
                     id: serviceId
                 }
             }
-        )
+        )       
         return res.status(200).json({
             success: true,
             message: "Appointment update",
@@ -124,14 +125,32 @@ export const getAppointments = async (req: Request, res: Response) => {
     try {
         const userId = req.tokenData.userId;
 
-        const appointments = await Appointment.find(
+        // const appointments = await Appointment.find(
+        //     {
+        //         where: {
+        //             user:
+        //             {
+        //                 id: userId
+        //             }
+        //         }
+        //     }
+        // )
+
+
+        const appointments = await User.findOne( // SOLUCION DANI
             {
-                where: {
-                    user:
-                    {
-                        id: userId
+                where: 
+                {
+                    id: userId
+                },
+                relations: {
+                    role: true,
+                    appointment: {
+                        service: true
                     }
+                    
                 }
+
             }
         )
 
