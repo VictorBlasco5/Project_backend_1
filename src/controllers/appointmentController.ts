@@ -44,9 +44,17 @@ export const updateAppointments = async (req: Request, res: Response) => {
         const appointmentId = req.body.appointment_id as number;
         const serviceId = req.body.service_id;
 
-        const appointment = await Appointment.findOneBy({
-            id: appointmentId
-        })
+        const appointment = await Appointment.findOne( // SOLUCION DANI
+        {
+            where: 
+            {
+                id: appointmentId
+            },
+            relations: {
+                user: true
+            }
+        }
+    )
 
         if (!appointment) {
             return res.status(404).json({
@@ -57,7 +65,7 @@ export const updateAppointments = async (req: Request, res: Response) => {
         if (appointment.user.id != req.tokenData.userId) {
             return res.status(400).json({
                 success: false,
-                message: "The appointment has not exist" //"The user has not rights to modify the appointment"
+                message: "The appointment has not exist"//"The user has not rights to modify the appointment"
             })
         }
 
@@ -182,12 +190,20 @@ export const getAppointments = async (req: Request, res: Response) => {
 export const deleteAppointments = async (req: Request, res: Response) => {
     try {
 
-        const appointmentId = req.params.id;
+        const appointmentId = parseInt(req.params.id);
         const userId = req.tokenData.userId
 
-        const appointment: any = await Appointment.findOneBy({
-            id: parseInt(appointmentId),
-        })
+        const appointment = await Appointment.findOne( // SOLUCION DANI
+        {
+            where: 
+            {
+                id: appointmentId
+            },
+            relations: {
+                user: true
+            }
+        }
+    )
 
         if (!appointment) {
             return res.status(404).json({
@@ -196,14 +212,14 @@ export const deleteAppointments = async (req: Request, res: Response) => {
             })
         }
 
-        // if(userId !== appointment.user_id) {
-        //     console.log(userId)
-        //     console.log(appointment.user_id)
-        //     return res.status (400).json({
-        //         success: false,
-        //         message: "Unauthorized to delete this appointment"
-        //     })
-        // }
+        if(userId !== appointment.user.id) {
+            console.log(userId)
+            console.log(appointment.user.id)
+            return res.status (400).json({
+                success: false,
+                message: "Unauthorized to delete this appointment"
+            })
+        }
        
 
         const appointmentDelete = await Appointment.remove(appointment)
