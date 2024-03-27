@@ -9,7 +9,7 @@ export const userSeedDatabase = async () => {
         first_name: "Laura",
         last_name: "Blasco",
         email: "laura@blasco.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 3}
       });
       await user1.save();
@@ -18,7 +18,7 @@ export const userSeedDatabase = async () => {
         first_name: "Víctor",
         last_name: "Blasco",
         email: "victor@blasco.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 2}
       });
       await user2.save();
@@ -27,7 +27,7 @@ export const userSeedDatabase = async () => {
         first_name: "Miguel Ángel",
         last_name: "Blasco",
         email: "miguelangel@blasco.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user3.save();
@@ -36,7 +36,7 @@ export const userSeedDatabase = async () => {
         first_name: "Lina",
         last_name: "Pérez",
         email: "lina@perez.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user4.save();
@@ -45,7 +45,7 @@ export const userSeedDatabase = async () => {
         first_name: "Iván",
         last_name: "Esparza",
         email: "ivan@esparza.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user5.save();
@@ -54,7 +54,7 @@ export const userSeedDatabase = async () => {
         first_name: "Alex",
         last_name: "García",
         email: "alex@garcia.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user6.save();
@@ -63,7 +63,7 @@ export const userSeedDatabase = async () => {
         first_name: "Conrado",
         last_name: "Casany",
         email: "conrado@casany.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user7.save();
@@ -72,7 +72,7 @@ export const userSeedDatabase = async () => {
         first_name: "Carles",
         last_name: "Clemenre",
         email: "carles@clemente.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user8.save();
@@ -81,7 +81,7 @@ export const userSeedDatabase = async () => {
         first_name: "Guillermo",
         last_name: "Bernat",
         email: "guillermo@bernat.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user9.save();
@@ -90,7 +90,7 @@ export const userSeedDatabase = async () => {
         first_name: "Eloy",
         last_name: "Díaz",
         email: "eloy@diaz.com",
-        password_hash: "$2b$08$apv5HSaTAJEJ.iswX9se0.SW0NHBpc.S6tH.Sx8HyPEaApSQxl9kS",
+        password_hash: "$2b$08$ZEsDerEChlJlGCodM7tIYO1Jtp6uXfajfZNByeNQ1rUBnlI3ovIMm",
         role: {id: 1}
       });
       await user10.save();

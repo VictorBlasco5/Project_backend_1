@@ -4,7 +4,7 @@ import { createServices, deleteServices, getServices, updateServices } from "./c
 import { deleteUsers, getUserProfile, getUsers, updateProfile } from "./controllers/userController";
 import { auth } from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
-import { createAppointments, getAppointments, getAppointmentsById, updateAppointments } from "./controllers/appointmentController";
+import { createAppointments, deleteAppointments, getAppointments, getAppointmentsById, updateAppointments } from "./controllers/appointmentController";
 import cors from "cors";
 
 export const app = express();
@@ -44,3 +44,4 @@ app.post('/api/appointments',auth, createAppointments)
 app.put('/api/appointments', auth, updateAppointments)
 app.get('/api/appointments/:id', getAppointmentsById)
 app.get('/api/appointments', auth, getAppointments)
+app.delete('/api/appointments/:id', auth, deleteAppointments)

@@ -28,7 +28,7 @@ export const getServices = async (req: Request, res: Response) => {
         })
         res.status(200).json(
             {
-                succes: true,
+                success: true,
                 message: "Services retrieved successfuly",
                 data: services
             }
@@ -103,7 +103,7 @@ export const updateServices = async (req: Request, res: Response) => {
 
         res.status(200).json(
             {
-                succes: true,
+                success: true,
                 message: "Service update",
                 data: serviceUpdate
             }

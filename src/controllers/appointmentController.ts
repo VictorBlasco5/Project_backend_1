@@ -177,3 +177,49 @@ export const getAppointments = async (req: Request, res: Response) => {
         })
     }
 }
+
+//Eliminar mis citas
+export const deleteAppointments = async (req: Request, res: Response) => {
+    try {
+
+        const appointmentId = req.params.id;
+        const userId = req.tokenData.userId
+
+        const appointment: any = await Appointment.findOneBy({
+            id: parseInt(appointmentId),
+        })
+
+        if (!appointment) {
+            return res.status(404).json({
+                success: false,
+                message: "Service doesnt exist"
+            })
+        }
+
+        // if(userId !== appointment.user_id) {
+        //     console.log(userId)
+        //     console.log(appointment.user_id)
+        //     return res.status (400).json({
+        //         success: false,
+        //         message: "Unauthorized to delete this appointment"
+        //     })
+        // }
+       
+
+        const appointmentDelete = await Appointment.remove(appointment)
+
+        res.status(200).json(
+            {
+                succes: true,
+                message: "Appointment delete",
+                data: appointmentDelete
+            }
+        )
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Cant delete appointment",
+            error: error
+        })
+    }
+}
