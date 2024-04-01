@@ -4,7 +4,7 @@ import { User } from "../models/User";
 //VER TODOS LOS USUARIOS
 export const getUsers = async (req: Request, res: Response) => {
     try {
-        const limit = Number(req.query.limit) || 10; // elijo el limite que yo quiera y sino por defecto me dará 10
+        const limit = Number(req.query.limit) || 100; // elijo el limite que yo quiera y sino por defecto me dará 10
         const page = Number(req.query.page) || 1; //elijo empezar por la pagina que yo quiera y sino por defecto me dará la 1
         const skip = (page - 1) * limit as number // determinar por qué página quiero empezar
 
