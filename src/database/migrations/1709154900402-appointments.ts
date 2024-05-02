@@ -30,8 +30,8 @@ export class Appointments1709154900402 implements MigrationInterface {
                 ],
                 uniques: [
                     new TableUnique({
-                       name: "user_service_unique",
-                       columnNames: ["user_id", "service_id"],
+                       name: "user_service_date_unique",
+                       columnNames: ["user_id", "service_id", "appointment_date"],
                     }),
                  ],
                 foreignKeys: [
